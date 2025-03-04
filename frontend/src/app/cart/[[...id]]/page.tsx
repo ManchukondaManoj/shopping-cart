@@ -8,6 +8,8 @@ import { useRouter, useParams, useSearchParams } from "next/navigation";
 import { addToCart, removeFromCart } from "../../../store/cartActions";
 import { updateCartInitialState } from "@/store/cartActions";
 // import type { RootState } from "../store";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const CartScreen = () => {
   const router = useRouter();
@@ -94,15 +96,13 @@ const CartScreen = () => {
                       ))}
                     </select>
                   </div>
-                  <div>
-                    <button
-                      type="button"
-                      onClick={() => removeFromCartHandler(item.product)}
-                      className="text-red-500 hover:text-red-700"
-                    >
-                      <i className="fas fa-trash"></i>
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removeFromCartHandler(item.product)}
+                    className="text-red-500 hover:text-red-700"
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
                 </div>
               ))}
             </div>

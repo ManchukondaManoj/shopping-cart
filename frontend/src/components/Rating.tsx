@@ -1,5 +1,8 @@
 import React from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
+import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 interface RatingProps {
   value: number;
   text?: string;
@@ -9,11 +12,11 @@ interface RatingProps {
 const Rating: React.FC<RatingProps> = ({ value, text, color = "#f8e825" }) => {
   const renderStar = (star: number) => {
     if (value >= star) {
-      return <i style={{ color }} className="fas fa-star" />;
+      return <FontAwesomeIcon style={{ color }} icon={faStar} />;
     } else if (value >= star - 0.5) {
-      return <i style={{ color }} className="fas fa-star-half-alt" />;
+      return <FontAwesomeIcon style={{ color }} icon={faStarHalfAlt} />;
     } else {
-      return <i style={{ color }} className="far fa-star" />;
+      return <FontAwesomeIcon style={{ color }} icon={faStarRegular} />;
     }
   };
 

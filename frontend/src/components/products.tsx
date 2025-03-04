@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-// import Rating from "./Rating";
+
 import Rating from "@/components/Rating";
 
 interface ProductProps {
@@ -12,6 +12,7 @@ interface ProductProps {
     rating: number;
     numReviews: number;
     price: number;
+    countInStock: number;
   };
 }
 
@@ -35,13 +36,16 @@ const Product: React.FC<ProductProps> = ({ product }) => {
             {product.name}
           </h2>
         </Link>
-        {/* <div className="flex items-center">
+        <div className="flex items-center">
           <Rating
             value={product.rating}
             text={`${product.numReviews} reviews`}
           />
-        </div> */}
+        </div>
         <p className="text-xl font-bold text-gray-800">${product.price}</p>
+        <p className="text-xl font-bold text-gray-800">
+          In Stock {product.countInStock}
+        </p>
       </div>
     </div>
   );

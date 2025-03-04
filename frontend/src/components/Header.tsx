@@ -48,6 +48,12 @@ const Header = () => {
                     >
                       Profile
                     </Link>
+                    <Link
+                      href="/orders"
+                      className="block px-4 py-2 hover:bg-gray-200"
+                    >
+                      My Orders
+                    </Link>
                     <button
                       onClick={handleLogout}
                       className="w-full text-left block px-4 py-2 hover:bg-gray-200"
