@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const Routes = require("./routes/index.js");
-const { notFound, errorHandler } = require("./middleware");
+const { notFound, errorHandler } = require("./middleware/index.js");
 
 const app = express();
 app.use(cors());
@@ -13,7 +13,11 @@ app.use("/", Routes);
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//   console.log(`🚀 Server running on http://localhost:${PORT}`);
+// });
+
+// exports.api = functions.https.onRequest(app);
+
+module.exports = app;
