@@ -1,11 +1,19 @@
+const { fireStoreDb } = require("../../lib/firebaseAdmin");
+
 module.exports = async (req, res) => {
-  const cart = await Promise.resolve({});
-  if (cart) {
-    res.json({
-      cart,
+  try {
+    const { cart: userCart } = req.body;
+    console.log("=========userCart", userCart);
+    const cartRef = fireStoreDb.collection("cart").doc(req.user.user_id);
+
+    await cartRef.set({
+      userId: req.user.user_id,
+      cart: userCart,
+      createdAt: new Date().getTime(),
     });
-  } else {
+    res.status(200).json({ message: "Cart created" });
+  } catch (error) {
     res.status(400);
-    throw new Error("Invalid User details");
+    throw new Error(error);
   }
 };

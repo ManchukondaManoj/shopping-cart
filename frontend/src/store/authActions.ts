@@ -3,7 +3,7 @@ import { auth } from "../lib/firebase";
 import api from "../lib/axiosInterceptors";
 import {
   SIGNUP_REQUEST,
-  SIGNUP_SUCCESS,
+  USER_INITIAL_DATA,
   SIGNUP_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -11,12 +11,15 @@ import {
   LOGOUT,
 } from "./types";
 import {
+  sendEmailVerification,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updatePassword,
+  updateProfile,
 } from "firebase/auth";
-import axios from "axios";
-// Signup Action
+
+import { cartAddItem } from "./cartActions";
 export const signup =
   ({
     name,
@@ -31,12 +34,13 @@ export const signup =
     dispatch({ type: SIGNUP_REQUEST });
 
     try {
-      console.log("========name", name);
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
+      localStorage.setItem("previousRoute", "signup");
+      await sendEmailVerification(userCredential.user);
       return Promise.resolve({
         uid: userCredential.user.uid,
         email: userCredential.user.email,
@@ -72,6 +76,25 @@ export const login =
         data: { user: userDetails },
       } = await api(URL, config);
       localStorage.setItem("auth_token", idToken);
+
+      const localCart = localStorage.getItem("cartItems");
+      if (localCart && localCart.length) {
+        const cartConfig = {
+          method: "post",
+          data: {
+            cart: JSON.parse(localCart),
+          },
+        };
+        await api("/cart", cartConfig);
+      } else {
+        const {
+          data: { cart },
+        } = await api.get("/cart");
+        if (cart.length) {
+          localStorage.setItem("cartItems", JSON.stringify(cart));
+        }
+      }
+
       dispatch({
         type: LOGIN_SUCCESS,
         payload: {
@@ -89,21 +112,45 @@ export const login =
 export const logout = () => async (dispatch: Dispatch) => {
   await signOut(auth);
   localStorage.removeItem("auth_token");
+  localStorage.removeItem("userInfo");
   dispatch({ type: LOGOUT });
 };
 
-export const handleAuthChange = () => async () => {
+export const setUserInfo = () => (dispatch: Dispatch) => {
+  dispatch({ type: USER_INITIAL_DATA });
+};
+
+export const updateUserPassword = (password: string) => async () => {
+  const userData = auth.currentUser;
+  await updatePassword(userData, password);
+};
+
+export const updateUserProfile = (displayName: string) => async (dispatch) => {
   try {
-    let userDetails;
+    const userData = auth.currentUser;
+    await updateProfile(userData, { displayName });
+    dispatch({
+      type: "UPDATE_USER_DISPLAY_NAME",
+      payload: displayName,
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+export const handleAuthChange = () => {
+  try {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
-        userDetails = user;
         const token = await user.getIdToken();
         localStorage.setItem("auth_token", token);
       }
+      const signedUpRoute = localStorage.getItem("previousRoute");
+      if (!signedUpRoute) {
+        localStorage.setItem("userInfo", JSON.stringify(user?.providerData[0]));
+      }
     });
-    return Promise.resolve(userDetails);
+    return Promise.resolve();
   } catch (error: any) {
-    console.log("=====err", error);
+    console.log(error);
   }
 };

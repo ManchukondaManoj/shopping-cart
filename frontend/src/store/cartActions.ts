@@ -1,11 +1,7 @@
-import axios from "axios";
 import { Dispatch } from "redux";
 
 import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_INITIAL_STATE } from "./types";
 import api from "@/lib/axiosInterceptors";
-// import type { RootState } from "../store";
-
-// Define a product interface matching the API response
 interface Product {
   productId: string;
   _id: string;
@@ -15,7 +11,6 @@ interface Product {
   countInStock: number;
 }
 
-// Define the cart item interface
 export interface CartItem {
   product: string;
   name: string;
@@ -41,7 +36,6 @@ export const updateInitialState = () => ({
   type: CART_INITIAL_STATE,
 });
 
-// Thunk action to add an item to the cart
 export const addToCart =
   (id: string, qty: number) => async (dispatch: Dispatch, getState: any) => {
     try {
@@ -60,6 +54,17 @@ export const addToCart =
         "cartItems",
         JSON.stringify(getState().cart.cartItems)
       );
+      const userInfo = localStorage.getItem("userInfo");
+      if (userInfo) {
+        const cartItems = getState().cart.cartItems;
+        const cartConfig = {
+          method: "post",
+          data: {
+            cart: cartItems,
+          },
+        };
+        await api("/cart", cartConfig);
+      }
     } catch (err) {
       console.log("======Err", err);
     }
@@ -69,11 +74,20 @@ export const addToCart =
 export const removeFromCart =
   (productId: string) => async (dispatch: Dispatch, getState: any) => {
     dispatch(removeItemFromCart(productId));
+    try {
+      const cartItems = getState().cart.cartItems;
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
-    localStorage.setItem(
-      "cartItems",
-      JSON.stringify(getState().cart.cartItems)
-    );
+      const cartConfig = {
+        method: "post",
+        data: {
+          cart: cartItems,
+        },
+      };
+      await api("/cart", cartConfig);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
 export const updateCartInitialState = () => async (dispatch: Dispatch) => {

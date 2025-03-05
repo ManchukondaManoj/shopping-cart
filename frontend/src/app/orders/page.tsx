@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import api from "@/lib/axiosInterceptors";
-
+import withAuth from "@/components/withAuthHOC";
 interface ShippingAddress {
   address: string;
   city: string;
@@ -29,6 +29,7 @@ interface Order {
   items: OrderItem[];
   totalPrice: string;
   createdAt: number;
+  orderStatus: string;
 }
 
 const OrdersPage: React.FC = () => {
@@ -64,8 +65,8 @@ const OrdersPage: React.FC = () => {
       ) : orders.length === 0 ? (
         <p>
           No orders found.{" "}
-          <Link href="/">
-            <a className="text-blue-500 hover:underline">Go shopping</a>
+          <Link href="/" className="text-blue-500 hover:underline">
+            Go shopping
           </Link>
         </p>
       ) : (
@@ -90,7 +91,7 @@ const OrdersPage: React.FC = () => {
               </div>
 
               <div className="mb-4">
-                <h3 className="text-lg font-medium mb-2">Shipping Address</h3>
+                <h3 className="text-lg font-bold mb-2">Shipping Address</h3>
                 <p>{order.shippingAddress.address}</p>
                 <p>
                   {order.shippingAddress.city},{" "}
@@ -100,12 +101,17 @@ const OrdersPage: React.FC = () => {
               </div>
 
               <div className="mb-4">
-                <h3 className="text-lg font-medium mb-2">Payment Method</h3>
+                <h3 className="text-lg font-bold mb-2">Payment Method</h3>
                 <p>{order.paymentMethod}</p>
               </div>
 
+              <div className="mb-4">
+                <h3 className="text-lg font-bold">Order Status</h3>
+                <p>{order.orderStatus || "Pending"}</p>
+              </div>
+
               <div>
-                <h3 className="text-lg font-medium mb-2">Items</h3>
+                <h3 className="text-lg font-bold mb-2">Items</h3>
                 <div className="space-y-2">
                   {order.items.map((item) => (
                     <div
@@ -134,4 +140,4 @@ const OrdersPage: React.FC = () => {
   );
 };
 
-export default OrdersPage;
+export default withAuth(OrdersPage);

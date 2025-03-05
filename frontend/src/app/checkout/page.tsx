@@ -1,23 +1,17 @@
-// app/checkout/page.tsx or pages/checkout.tsx
 "use client";
 
 import React, { useState } from "react";
-// import { useRouter } from "next/navigation";
 import { checkout } from "@/store/checkoutActions";
 
-import { useDispatch, useSelector } from "react-redux";
-// import { getProductById } from "../../../store/productActions"; // Update path as needed
-// import { useRouter } from "next/navigation";
-const CheckoutScreen: React.FC = () => {
-  //   const router = useRouter();
+import { useDispatch } from "react-redux";
+import withAuth from "@/components/withAuthHOC";
 
-  // Shipping address state
+const CheckoutScreen: React.FC = () => {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
 
-  // Payment method state; defaulting to "Cash"
   const [paymentMethod, setPaymentMethod] = useState("Cash");
 
   const dispatch = useDispatch();
@@ -25,11 +19,7 @@ const CheckoutScreen: React.FC = () => {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const shippingAddress = { address, city, postalCode, country };
-    console.log("===========Chekingout");
     dispatch(checkout(shippingAddress, paymentMethod));
-
-    // Navigate to the next step in checkout
-    // router.push("/payment");
   };
 
   return (
@@ -161,4 +151,4 @@ const CheckoutScreen: React.FC = () => {
   );
 };
 
-export default CheckoutScreen;
+export default withAuth(CheckoutScreen);

@@ -21,7 +21,9 @@ export default function Signup() {
 
   const dispatch = useDispatch();
   const router = useRouter();
-  const { loading, error } = useSelector((state: RootState) => state.auth);
+  const { signUpLoading: loading, signUpError: error } = useSelector(
+    (state: RootState) => state.auth
+  );
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

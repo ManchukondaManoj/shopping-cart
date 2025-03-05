@@ -1,17 +1,21 @@
 const { fireStoreDb } = require("../../lib/firebaseAdmin");
 
 module.exports = async (req, res) => {
-  const { user_id, email, auth_time } = req.user;
+  const { user_id } = req.user;
   try {
     const userRef = fireStoreDb.collection("users").doc(user_id);
     const userSnap = await userRef.get();
     if (userSnap.exists) {
-      return res.status(200).json({ user: userSnap.data() });
+      return res.status(200).json({
+        user: {
+          ...userSnap.data(),
+          ...req.user,
+        },
+      });
     }
     const newUser = {
-      email: email || "",
+      ...req.user,
       isAdmin: false,
-      createdAt: auth_time,
     };
     await userRef.set(newUser);
     return res.status(201).json({ user: newUser });

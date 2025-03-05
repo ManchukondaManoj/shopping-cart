@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { store } from "../store/store";
 import { handleAuthChange } from "../store/authActions";
+import { setUserInfo } from "@/store/authActions";
 
 import { Geist, Geist_Mono } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -29,6 +30,7 @@ export default function RootLayout({
 }>) {
   useEffect(() => {
     handleAuthChange();
+    store.dispatch(setUserInfo());
   }, []);
 
   return (
@@ -38,9 +40,8 @@ export default function RootLayout({
       >
         <Provider store={store}>
           <Header />
-          <main className="min-h-[80vh]">{children}</main>
+          {children}
         </Provider>
-        <Footer />
       </body>
     </html>
   );
