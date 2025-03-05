@@ -96,7 +96,7 @@ export default function Login() {
             Sign Up
           </Link>
         </p>
-        <GoogleAuthButton />
+        <GoogleAuthButton label="" />
       </div>
     </div>
   );

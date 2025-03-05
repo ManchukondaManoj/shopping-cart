@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Image from "next/Image";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useParams, useSearchParams } from "next/navigation";
 // import Message from "../components/Message";

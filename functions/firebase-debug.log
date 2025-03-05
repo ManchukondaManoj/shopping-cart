@@ -1,0 +1,228 @@
+[debug] [2025-03-05T20:22:01.556Z] ----------------------------------------------------------------------
+[debug] [2025-03-05T20:22:01.558Z] Command:       C:\nvm4w\nodejs\node.exe C:\Users\aparn\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2025-03-05T20:22:01.558Z] CLI Version:   13.32.0
+[debug] [2025-03-05T20:22:01.558Z] Platform:      win32
+[debug] [2025-03-05T20:22:01.558Z] Node Version:  v20.11.1
+[debug] [2025-03-05T20:22:01.558Z] Time:          Thu Mar 06 2025 01:52:01 GMT+0530 (India Standard Time)
+[debug] [2025-03-05T20:22:01.559Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-03-05T20:22:01.729Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-03-05T20:22:01.729Z] > authorizing via signed-in user (manchukondamanoj@gmail.com)
+[debug] [2025-03-05T20:22:01.729Z] [iam] checking project shoppingcart-app-b2a2b for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-03-05T20:22:01.730Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:01.730Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:01.731Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b:testIamPermissions [none]
+[debug] [2025-03-05T20:22:01.731Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b:testIamPermissions x-goog-quota-user=projects/shoppingcart-app-b2a2b
+[debug] [2025-03-05T20:22:01.731Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-03-05T20:22:03.340Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b:testIamPermissions 200
+[debug] [2025-03-05T20:22:03.340Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-03-05T20:22:03.340Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:03.341Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:03.341Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/shoppingcart-app-b2a2b/serviceAccounts/shoppingcart-app-b2a2b@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-03-05T20:22:03.341Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/shoppingcart-app-b2a2b/serviceAccounts/shoppingcart-app-b2a2b@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-03-05T20:22:05.206Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/shoppingcart-app-b2a2b/serviceAccounts/shoppingcart-app-b2a2b@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2025-03-05T20:22:05.206Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/shoppingcart-app-b2a2b/serviceAccounts/shoppingcart-app-b2a2b@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-03-05T20:22:05.208Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:05.208Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:05.209Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b [none]
+[debug] [2025-03-05T20:22:06.523Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b 200
+[debug] [2025-03-05T20:22:06.523Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b {"projectId":"shoppingcart-app-b2a2b","projectNumber":"892449238183","displayName":"ShoppingCart-app","name":"projects/shoppingcart-app-b2a2b","resources":{"hostingSite":"shoppingcart-app-b2a2b"},"state":"ACTIVE","etag":"1_ab738e2a-aad0-443b-a82b-2bf91bea32fd"}
+[info] 
+[info] === Deploying to 'shoppingcart-app-b2a2b'...
+[info] 
+[info] i  deploying functions, hosting 
+[debug] [2025-03-05T20:22:06.531Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:06.531Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:06.532Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b [none]
+[debug] [2025-03-05T20:22:06.941Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b 200
+[debug] [2025-03-05T20:22:06.941Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b {"projectNumber":"892449238183","projectId":"shoppingcart-app-b2a2b","lifecycleState":"ACTIVE","name":"ShoppingCart-app","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-03-03T12:34:29.444194Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2025-03-05T20:22:06.944Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:06.944Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:06.944Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:06.944Z] Checked if tokens are valid: true, expires at: 1741207900237
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2025-03-05T20:22:06.945Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:06.945Z] Checked if tokens are valid: true, expires at: 1741207900237
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2025-03-05T20:22:06.945Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:06.945Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:06.946Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-03-05T20:22:06.946Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/shoppingcart-app-b2a2b
+[debug] [2025-03-05T20:22:06.947Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/runtimeconfig.googleapis.com [none]
+[debug] [2025-03-05T20:22:06.947Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/shoppingcart-app-b2a2b
+[debug] [2025-03-05T20:22:06.949Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudbuild.googleapis.com [none]
+[debug] [2025-03-05T20:22:06.949Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudbuild.googleapis.com x-goog-quota-user=projects/shoppingcart-app-b2a2b
+[debug] [2025-03-05T20:22:06.951Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/artifactregistry.googleapis.com [none]
+[debug] [2025-03-05T20:22:06.951Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/artifactregistry.googleapis.com x-goog-quota-user=projects/shoppingcart-app-b2a2b
+[debug] [2025-03-05T20:22:08.864Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/artifactregistry.googleapis.com 200
+[debug] [2025-03-05T20:22:08.864Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/artifactregistry.googleapis.com [omitted]
+[info] +  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2025-03-05T20:22:08.867Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudfunctions.googleapis.com 200
+[debug] [2025-03-05T20:22:08.867Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2025-03-05T20:22:08.868Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/runtimeconfig.googleapis.com 200
+[debug] [2025-03-05T20:22:08.868Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2025-03-05T20:22:08.870Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudbuild.googleapis.com 200
+[debug] [2025-03-05T20:22:08.870Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2025-03-05T20:22:08.871Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:08.871Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:08.872Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b/adminSdkConfig [none]
+[debug] [2025-03-05T20:22:09.404Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b/adminSdkConfig 200
+[debug] [2025-03-05T20:22:09.404Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b/adminSdkConfig {"projectId":"shoppingcart-app-b2a2b","storageBucket":"shoppingcart-app-b2a2b.firebasestorage.app"}
+[debug] [2025-03-05T20:22:09.405Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:09.405Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:09.405Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b/configs [none]
+[debug] [2025-03-05T20:22:10.328Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b/configs 200
+[debug] [2025-03-05T20:22:10.329Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b/configs {}
+[debug] [2025-03-05T20:22:10.332Z] Validating nodejs source
+[debug] [2025-03-05T20:22:11.806Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "22"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.0.1",
+    "next": "^15.2.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2025-03-05T20:22:11.807Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2025-03-05T20:22:11.810Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-03-05T20:22:11.826Z] Found firebase-functions binary at 'C:\Users\aparn\MMK\projects\shopping-cart\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8625
+
+[debug] [2025-03-05T20:22:12.920Z] Got response from /__/functions.yaml {"endpoints":{"api":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"api"},"nextServer":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"nextServer"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[error] ❌ Next.js preparation error: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at async (C:\Users\aparn\MMK\projects\shopping-cart\functions\index.js:28:5)
+
+[debug] [2025-03-05T20:22:38.150Z] ----------------------------------------------------------------------
+[debug] [2025-03-05T20:22:38.152Z] Command:       C:\nvm4w\nodejs\node.exe C:\Users\aparn\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2025-03-05T20:22:38.152Z] CLI Version:   13.32.0
+[debug] [2025-03-05T20:22:38.153Z] Platform:      win32
+[debug] [2025-03-05T20:22:38.153Z] Node Version:  v20.11.1
+[debug] [2025-03-05T20:22:38.153Z] Time:          Thu Mar 06 2025 01:52:38 GMT+0530 (India Standard Time)
+[debug] [2025-03-05T20:22:38.153Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-03-05T20:22:38.315Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-03-05T20:22:38.316Z] > authorizing via signed-in user (manchukondamanoj@gmail.com)
+[debug] [2025-03-05T20:22:38.316Z] [iam] checking project shoppingcart-app-b2a2b for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-03-05T20:22:38.317Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:38.317Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:38.318Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b:testIamPermissions [none]
+[debug] [2025-03-05T20:22:38.318Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b:testIamPermissions x-goog-quota-user=projects/shoppingcart-app-b2a2b
+[debug] [2025-03-05T20:22:38.318Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-03-05T20:22:39.724Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b:testIamPermissions 200
+[debug] [2025-03-05T20:22:39.724Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-03-05T20:22:39.724Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:39.725Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:39.725Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/shoppingcart-app-b2a2b/serviceAccounts/shoppingcart-app-b2a2b@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-03-05T20:22:39.725Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/shoppingcart-app-b2a2b/serviceAccounts/shoppingcart-app-b2a2b@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-03-05T20:22:41.451Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/shoppingcart-app-b2a2b/serviceAccounts/shoppingcart-app-b2a2b@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2025-03-05T20:22:41.452Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/shoppingcart-app-b2a2b/serviceAccounts/shoppingcart-app-b2a2b@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-03-05T20:22:41.453Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:41.454Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:41.454Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b [none]
+[debug] [2025-03-05T20:22:42.070Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b 200
+[debug] [2025-03-05T20:22:42.070Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b {"projectId":"shoppingcart-app-b2a2b","projectNumber":"892449238183","displayName":"ShoppingCart-app","name":"projects/shoppingcart-app-b2a2b","resources":{"hostingSite":"shoppingcart-app-b2a2b"},"state":"ACTIVE","etag":"1_ab738e2a-aad0-443b-a82b-2bf91bea32fd"}
+[info] 
+[info] === Deploying to 'shoppingcart-app-b2a2b'...
+[info] 
+[info] i  deploying functions, hosting 
+[debug] [2025-03-05T20:22:42.076Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:42.076Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:42.076Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b [none]
+[debug] [2025-03-05T20:22:42.376Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b 200
+[debug] [2025-03-05T20:22:42.376Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/shoppingcart-app-b2a2b {"projectNumber":"892449238183","projectId":"shoppingcart-app-b2a2b","lifecycleState":"ACTIVE","name":"ShoppingCart-app","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-03-03T12:34:29.444194Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2025-03-05T20:22:42.379Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:42.379Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:42.379Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:42.379Z] Checked if tokens are valid: true, expires at: 1741207900237
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2025-03-05T20:22:42.380Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:42.380Z] Checked if tokens are valid: true, expires at: 1741207900237
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2025-03-05T20:22:42.381Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:42.381Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:42.381Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-03-05T20:22:42.381Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/shoppingcart-app-b2a2b
+[debug] [2025-03-05T20:22:42.383Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/runtimeconfig.googleapis.com [none]
+[debug] [2025-03-05T20:22:42.383Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/shoppingcart-app-b2a2b
+[debug] [2025-03-05T20:22:42.385Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudbuild.googleapis.com [none]
+[debug] [2025-03-05T20:22:42.385Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudbuild.googleapis.com x-goog-quota-user=projects/shoppingcart-app-b2a2b
+[debug] [2025-03-05T20:22:42.387Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/artifactregistry.googleapis.com [none]
+[debug] [2025-03-05T20:22:42.387Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/artifactregistry.googleapis.com x-goog-quota-user=projects/shoppingcart-app-b2a2b
+[debug] [2025-03-05T20:22:43.065Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudbuild.googleapis.com 200
+[debug] [2025-03-05T20:22:43.065Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2025-03-05T20:22:44.132Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/runtimeconfig.googleapis.com 200
+[debug] [2025-03-05T20:22:44.132Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2025-03-05T20:22:44.147Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudfunctions.googleapis.com 200
+[debug] [2025-03-05T20:22:44.147Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2025-03-05T20:22:44.149Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/artifactregistry.googleapis.com 200
+[debug] [2025-03-05T20:22:44.149Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/shoppingcart-app-b2a2b/services/artifactregistry.googleapis.com [omitted]
+[info] +  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2025-03-05T20:22:44.150Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:44.150Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:44.150Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b/adminSdkConfig [none]
+[debug] [2025-03-05T20:22:44.725Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b/adminSdkConfig 200
+[debug] [2025-03-05T20:22:44.726Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b/adminSdkConfig {"projectId":"shoppingcart-app-b2a2b","storageBucket":"shoppingcart-app-b2a2b.firebasestorage.app"}
+[debug] [2025-03-05T20:22:44.726Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:44.727Z] Checked if tokens are valid: true, expires at: 1741207900237
+[debug] [2025-03-05T20:22:44.727Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b/configs [none]
+[debug] [2025-03-05T20:22:45.154Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b/configs 200
+[debug] [2025-03-05T20:22:45.155Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/shoppingcart-app-b2a2b/configs {}
+[debug] [2025-03-05T20:22:45.157Z] Validating nodejs source
+[debug] [2025-03-05T20:22:47.047Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "22"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.0.1",
+    "next": "^15.2.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2025-03-05T20:22:47.047Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2025-03-05T20:22:47.049Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-03-05T20:22:47.058Z] Found firebase-functions binary at 'C:\Users\aparn\MMK\projects\shopping-cart\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8174
+
+[debug] [2025-03-05T20:22:48.189Z] Got response from /__/functions.yaml {"endpoints":{"api":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"api"},"nextServer":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"nextServer"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[error] ❌ Next.js preparation error: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at async (C:\Users\aparn\MMK\projects\shopping-cart\functions\index.js:28:5)
+

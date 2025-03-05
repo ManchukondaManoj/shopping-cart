@@ -2,7 +2,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import React from "react";
-import Image from "next/Image";
+import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductById } from "../../../store/productActions"; // Update path as needed
 import { useRouter } from "next/navigation";
