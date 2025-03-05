@@ -3,7 +3,6 @@ const { fireStoreDb } = require("../../lib/firebaseAdmin");
 module.exports = async (req, res) => {
   try {
     const { cart: userCart } = req.body;
-    console.log("=========userCart", userCart);
     const cartRef = fireStoreDb.collection("cart").doc(req.user.user_id);
 
     await cartRef.set({

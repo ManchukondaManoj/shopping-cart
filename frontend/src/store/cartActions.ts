@@ -66,7 +66,7 @@ export const addToCart =
         await api("/cart", cartConfig);
       }
     } catch (err) {
-      console.log("======Err", err);
+      console.log(err);
     }
   };
 

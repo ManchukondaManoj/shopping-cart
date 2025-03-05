@@ -24,7 +24,6 @@ export const checkout =
   (shippingAddress: ShippingAddress, paymentMethod: string) =>
   async (dispatch: Dispatch, getState: any) => {
     try {
-      console.log("=========checkout in action");
       dispatch({ type: CHECKOUT_ORDER_REQUEST });
       const { cartItems } = getState().cart;
       const totalPrice = cartItems
@@ -46,7 +45,6 @@ export const checkout =
 
       dispatch({ type: CHECKOUT_ORDER_SUCCESS, payload: data });
     } catch (error) {
-      console.log("======err", error);
       dispatch({
         type: CHECKOUT_ORDER_FAIL,
         payload: error instanceof Error ? error.message : "Unknown error",
