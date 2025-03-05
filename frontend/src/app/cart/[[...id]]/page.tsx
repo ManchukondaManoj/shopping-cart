@@ -128,7 +128,7 @@ const CartScreen = () => {
               type="button"
               onClick={checkoutHandler}
               disabled={cartItems.length === 0}
-              className="w-full bg-blue-500 text-white py-2 px-4 rounded disabled:opacity-50 hover:bg-blue-600 transition-colors"
+              className="cursor-pointer w-full bg-blue-500 text-white py-2 px-4 rounded disabled:opacity-50 hover:bg-blue-600 transition-colors"
             >
               Proceed to checkout
             </button>

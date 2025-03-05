@@ -4,20 +4,13 @@ import {
   CHECKOUT_ORDER_REQUEST,
   CHECKOUT_ORDER_SUCCESS,
 } from "./types";
+import { clearCart } from "./cartActions";
 
 interface ShippingAddress {
   address: string;
   city: string;
   postalCode: string;
   country: string;
-}
-
-interface CheckoutResponse {
-  message: string;
-  data?: {
-    shippingAddress: ShippingAddress;
-    paymentMethod: string;
-  };
 }
 
 export const checkout =
@@ -44,6 +37,7 @@ export const checkout =
       const { data } = await api("/checkout", config);
 
       dispatch({ type: CHECKOUT_ORDER_SUCCESS, payload: data });
+      dispatch(clearCart());
     } catch (error) {
       dispatch({
         type: CHECKOUT_ORDER_FAIL,

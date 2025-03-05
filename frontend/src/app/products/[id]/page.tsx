@@ -63,7 +63,6 @@ const ProductScreen = ({ params }: PageProps) => {
           {/* Product Details */}
           <div className="col-span-1">
             <h3 className="text-2xl font-bold">{product.name}</h3>
-            <p className="text-yellow-500">{`${product.rating} ⭐ (${product.numReviews} reviews)`}</p>
             <p className="text-xl font-semibold mt-2">${product.price}</p>
             <p className="text-gray-700 mt-2">{product.description}</p>
           </div>

@@ -1,6 +1,11 @@
 import { Dispatch } from "redux";
 
-import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_INITIAL_STATE } from "./types";
+import {
+  CART_ADD_ITEM,
+  CART_REMOVE_ITEM,
+  CART_INITIAL_STATE,
+  CLEAR_CART,
+} from "./types";
 import api from "@/lib/axiosInterceptors";
 interface Product {
   productId: string;
@@ -30,6 +35,10 @@ export const cartAddItem = (data: CartItem) => ({
 export const removeItemFromCart = (data: string) => ({
   type: CART_REMOVE_ITEM,
   payload: data,
+});
+
+export const removeAllItemsFromCart = () => ({
+  type: CLEAR_CART,
 });
 
 export const updateInitialState = () => ({
@@ -70,7 +79,6 @@ export const addToCart =
     }
   };
 
-// Thunk action to remove an item from the cart
 export const removeFromCart =
   (productId: string) => async (dispatch: Dispatch, getState: any) => {
     dispatch(removeItemFromCart(productId));
@@ -91,5 +99,12 @@ export const removeFromCart =
   };
 
 export const updateCartInitialState = () => async (dispatch: Dispatch) => {
+  dispatch(updateInitialState());
+};
+
+export const clearCart = () => async (dispatch: Dispatch) => {
+  localStorage.removeItem("cartItems");
+  dispatch(removeAllItemsFromCart());
+
   dispatch(updateInitialState());
 };

@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { checkout } from "@/store/checkoutActions";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import withAuth from "@/components/withAuthHOC";
+import { useRouter } from "next/navigation";
 
 const CheckoutScreen: React.FC = () => {
   const [address, setAddress] = useState("");
@@ -15,6 +16,14 @@ const CheckoutScreen: React.FC = () => {
   const [paymentMethod, setPaymentMethod] = useState("Cash");
 
   const dispatch = useDispatch();
+  const router = useRouter();
+  const { isOrderPlaced } = useSelector((state) => state.checkoutReducer);
+
+  useEffect(() => {
+    if (isOrderPlaced) {
+      router.push("/orders");
+    }
+  }, [isOrderPlaced, router]);
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -138,7 +147,7 @@ const CheckoutScreen: React.FC = () => {
               <div className="mt-6">
                 <button
                   type="submit"
-                  className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition-colors"
+                  className="w-full cursor-pointer bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition-colors"
                 >
                   Place Order
                 </button>

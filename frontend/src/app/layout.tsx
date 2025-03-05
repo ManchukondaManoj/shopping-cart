@@ -1,7 +1,6 @@
 "use client";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
-import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { store } from "../store/store";
 import { handleAuthChange } from "../store/authActions";

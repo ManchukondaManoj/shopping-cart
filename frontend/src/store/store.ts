@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./authReducer";
 import { productListReducer, productDetailsReducer } from "./productReducers";
 import { cartReducer } from "./cartReducers";
+import { checkoutReducer } from "./checkoutReducer";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     products: productListReducer,
     productDetails: productDetailsReducer,
     cart: cartReducer,
+    checkoutReducer,
   },
 
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),

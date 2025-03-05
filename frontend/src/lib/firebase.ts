@@ -1,6 +1,6 @@
 // Import the necessary Firebase modules
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // Firebase configuration (Replace with your actual Firebase project credentials)
 const firebaseConfig = {
@@ -16,4 +16,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication
-export const auth = getAuth(app);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
+  prompt: "select_account",
+});
+
+export { googleProvider, auth };

@@ -62,7 +62,6 @@ const authReducer = (state = initialState, action: any): AuthState => {
       const userData = localStorage.getItem("userInfo");
       const userInfoFromStorage =
         userData !== "undefined" ? JSON.parse(userData) : null;
-      console.log("=====action.payload", action.payload);
       const userState = {
         ...state,
         user: {
@@ -70,7 +69,6 @@ const authReducer = (state = initialState, action: any): AuthState => {
           displayName: action.payload,
         },
       };
-      console.log("=======stage", userState);
       return userState;
     }
 

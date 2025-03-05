@@ -1,13 +1,15 @@
 "use client";
-import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_INITIAL_STATE } from "./types";
-import type { CartItem } from "./cartActions"; // Adjust the import path as needed
-
-// Define the cart state interface
+import {
+  CART_ADD_ITEM,
+  CART_REMOVE_ITEM,
+  CART_INITIAL_STATE,
+  CLEAR_CART,
+} from "./types";
+import type { CartItem } from "./cartActions";
 interface CartState {
   cartItems: CartItem[];
 }
 
-// Define action interfaces
 interface CartAddItemAction {
   type: typeof CART_ADD_ITEM;
   payload: CartItem;
@@ -21,11 +23,17 @@ interface CartRemoveItemAction {
 interface CartInitialStateAction {
   type: typeof CART_INITIAL_STATE;
 }
+
+interface ClearCartStateAction {
+  type: typeof CLEAR_CART;
+}
+
 // Union type for cart actions
 type CartAction =
   | CartAddItemAction
   | CartRemoveItemAction
-  | CartInitialStateAction;
+  | CartInitialStateAction
+  | ClearCartStateAction;
 
 // Initial state for the cart
 
@@ -70,6 +78,13 @@ export const cartReducer = (
       return {
         ...state,
         cartItems: cartItemsFromStorage,
+      };
+    }
+
+    case CLEAR_CART: {
+      return {
+        ...state,
+        cartItems: [],
       };
     }
     default:

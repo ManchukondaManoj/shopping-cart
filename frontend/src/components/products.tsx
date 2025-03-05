@@ -36,12 +36,6 @@ const Product: React.FC<ProductProps> = ({ product }) => {
             {product.name}
           </h2>
         </Link>
-        <div className="flex items-center">
-          <Rating
-            value={product.rating}
-            text={`${product.numReviews} reviews`}
-          />
-        </div>
         <p className="text-xl font-bold text-gray-800">${product.price}</p>
         <p className="text-xl font-bold text-gray-800">
           In Stock {product.countInStock}

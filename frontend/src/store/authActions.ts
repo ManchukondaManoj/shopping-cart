@@ -1,5 +1,7 @@
 import { Dispatch } from "redux";
-import { auth } from "../lib/firebase";
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "@/lib/firebase";
+
 import api from "../lib/axiosInterceptors";
 import {
   SIGNUP_REQUEST,
@@ -19,17 +21,8 @@ import {
   updateProfile,
 } from "firebase/auth";
 
-import { cartAddItem } from "./cartActions";
 export const signup =
-  ({
-    name,
-    email,
-    password,
-  }: {
-    name: string;
-    email: string;
-    password: string;
-  }) =>
+  ({ email, password }: { name: string; email: string; password: string }) =>
   async (dispatch: Dispatch) => {
     dispatch({ type: SIGNUP_REQUEST });
 
@@ -50,6 +43,41 @@ export const signup =
     }
   };
 
+const postLoginActions = async (userCredential: any, email: string) => {
+  const URL = "/auth/login";
+  const idToken = await userCredential.user.getIdToken();
+  const config = {
+    method: "post",
+    data: {
+      userId: userCredential.user.uid,
+      email,
+    },
+  };
+
+  const {
+    data: { user: userDetails },
+  } = await api(URL, config);
+  localStorage.setItem("auth_token", idToken);
+
+  const localCart = localStorage.getItem("cartItems");
+  if (localCart && localCart.length) {
+    const cartConfig = {
+      method: "post",
+      data: {
+        cart: JSON.parse(localCart),
+      },
+    };
+    await api("/cart", cartConfig);
+  } else {
+    const {
+      data: { cart },
+    } = await api.get("/cart");
+    if (cart.length) {
+      localStorage.setItem("cartItems", JSON.stringify(cart));
+    }
+  }
+  return userDetails;
+};
 // Login Action
 export const login =
   ({ email, password }: { email: string; password: string }) =>
@@ -62,38 +90,7 @@ export const login =
         email,
         password
       );
-      const URL = "/auth/login";
-      const idToken = await userCredential.user.getIdToken();
-      const config = {
-        method: "post",
-        data: {
-          userId: userCredential.user.uid,
-          email,
-        },
-      };
-
-      const {
-        data: { user: userDetails },
-      } = await api(URL, config);
-      localStorage.setItem("auth_token", idToken);
-
-      const localCart = localStorage.getItem("cartItems");
-      if (localCart && localCart.length) {
-        const cartConfig = {
-          method: "post",
-          data: {
-            cart: JSON.parse(localCart),
-          },
-        };
-        await api("/cart", cartConfig);
-      } else {
-        const {
-          data: { cart },
-        } = await api.get("/cart");
-        if (cart.length) {
-          localStorage.setItem("cartItems", JSON.stringify(cart));
-        }
-      }
+      const userDetails = await postLoginActions(userCredential, email);
 
       dispatch({
         type: LOGIN_SUCCESS,
@@ -108,12 +105,42 @@ export const login =
     }
   };
 
+export const signInWithPopupProvider =
+  (provider: string) => async (dispatch) => {
+    try {
+      const providerFn = {
+        google: googleProvider,
+      };
+      const authProvider = providerFn[provider];
+      const userCredential = await signInWithPopup(auth, authProvider);
+      console.log("userCredential", userCredential);
+      const email = userCredential.user.email || "";
+      const userDetails = await postLoginActions(userCredential, email);
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: {
+          uid: userCredential.user.uid,
+          email: userCredential.user.email,
+          ...userDetails,
+        },
+      });
+    } catch (error) {
+      console.log("google:signin:error", error);
+    }
+  };
+
 // Logout Action
 export const logout = () => async (dispatch: Dispatch) => {
-  await signOut(auth);
-  localStorage.removeItem("auth_token");
-  localStorage.removeItem("userInfo");
-  dispatch({ type: LOGOUT });
+  try {
+    await signOut(auth);
+    localStorage.removeItem("auth_token");
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("cartItems");
+    localStorage.removeItem("previousRoute");
+    dispatch({ type: LOGOUT });
+  } catch (error) {
+    console.log("logout:error", error);
+  }
 };
 
 export const setUserInfo = () => (dispatch: Dispatch) => {
@@ -129,7 +156,6 @@ export const updateUserProfile = (displayName: string) => async (dispatch) => {
   try {
     const userData = auth.currentUser;
     const updatedUserProfile = await updateProfile(userData, { displayName });
-    console.log("========updateUserProfile", updatedUserProfile);
     dispatch({
       type: "UPDATE_USER_DISPLAY_NAME",
       payload: displayName,
@@ -141,7 +167,7 @@ export const updateUserProfile = (displayName: string) => async (dispatch) => {
 export const handleAuthChange = async () => {
   try {
     auth.onAuthStateChanged(async (user) => {
-      console.log("=========user in auth", user);
+      console.log("========user", user);
       let userData = {};
       if (user) {
         const token = await user.getIdToken();

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../store/authActions";
 import { RootState } from "../../../store/store";
 import { useRouter } from "next/navigation";
+import GoogleAuthButton from "@/components/GoogleAuth";
 
 interface LoginFormData {
   email: string;
@@ -95,6 +96,7 @@ export default function Login() {
             Sign Up
           </Link>
         </p>
+        <GoogleAuthButton />
       </div>
     </div>
   );
