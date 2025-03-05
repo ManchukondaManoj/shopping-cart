@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -9,11 +9,18 @@ import { logout } from "@/store/authActions";
 const Header = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const [userInfo, setUserInfo] = useState(null);
   // const {
   //   user: { userDetails: userInfo },
   // } = useSelector((state: RootState) => state.auth);
   const { user } = useSelector((state: RootState) => state.auth);
-  const { userDetails: userInfo } = user || {};
+
+  useEffect(() => {
+    if (user) {
+      setUserInfo(user);
+    }
+  }, [user]);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -48,6 +55,14 @@ const Header = () => {
                   </button>
                   {/* Dropdown */}
                   <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                    {userInfo.isAdmin && (
+                      <Link
+                        href="/admin"
+                        className="block px-4 py-2 hover:bg-gray-200"
+                      >
+                        Admin Page
+                      </Link>
+                    )}
                     <Link
                       href="/updateProfile"
                       className="block px-4 py-2 hover:bg-gray-200"

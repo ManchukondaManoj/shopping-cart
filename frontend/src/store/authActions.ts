@@ -100,7 +100,7 @@ export const login =
         payload: {
           uid: userCredential.user.uid,
           email: userCredential.user.email,
-          userDetails,
+          ...userDetails,
         },
       });
     } catch (error: any) {
@@ -128,7 +128,8 @@ export const updateUserPassword = (password: string) => async () => {
 export const updateUserProfile = (displayName: string) => async (dispatch) => {
   try {
     const userData = auth.currentUser;
-    await updateProfile(userData, { displayName });
+    const updatedUserProfile = await updateProfile(userData, { displayName });
+    console.log("========updateUserProfile", updatedUserProfile);
     dispatch({
       type: "UPDATE_USER_DISPLAY_NAME",
       payload: displayName,
@@ -137,16 +138,24 @@ export const updateUserProfile = (displayName: string) => async (dispatch) => {
     throw error;
   }
 };
-export const handleAuthChange = () => {
+export const handleAuthChange = async () => {
   try {
     auth.onAuthStateChanged(async (user) => {
+      console.log("=========user in auth", user);
+      let userData = {};
       if (user) {
         const token = await user.getIdToken();
         localStorage.setItem("auth_token", token);
+        const { data } = await api.get("/auth/getUser");
+        userData = data.user;
       }
-      const signedUpRoute = localStorage.getItem("previousRoute");
+      const signedUpRoute = localStorage.getItem("previousRoute") === "signup";
+      const userToUpdate = {
+        ...userData,
+        ...user?.providerData[0],
+      };
       if (!signedUpRoute) {
-        localStorage.setItem("userInfo", JSON.stringify(user?.providerData[0]));
+        localStorage.setItem("userInfo", JSON.stringify(userToUpdate));
       }
     });
     return Promise.resolve();

@@ -25,12 +25,12 @@ export default function Login() {
 
   useEffect(() => {
     if (user) {
-      const previousRoute = localStorage.getItem("previousRoute");
+      const previousRoute = localStorage.getItem("previousRoute") || "";
       if (previousRoute === "signup") {
         localStorage.removeItem("previousRoute");
         router.push("/");
       } else {
-        router.back();
+        router.push(`/${previousRoute}`);
       }
     }
   }, [user, router]);

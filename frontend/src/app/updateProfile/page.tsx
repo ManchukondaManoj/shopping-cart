@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useRouter } from "next/navigation";
 import { updateUserPassword, updateUserProfile } from "@/store/authActions";
 import withAuth from "@/components/withAuthHOC";
 
 const UpdateProfile: React.FC = () => {
-  const router = useRouter();
   const [profile, setProfile] = useState({ name: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("previousRoute", "updateProfile");
+  }, []);
 
   const dispatch = useDispatch();
 

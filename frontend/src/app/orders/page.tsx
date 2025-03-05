@@ -41,6 +41,10 @@ const OrdersPage: React.FC = () => {
   // In a real app, you'll get this from your auth context or state.
 
   useEffect(() => {
+    localStorage.setItem("previousRoute", "orders");
+  }, []);
+
+  useEffect(() => {
     const fetchOrders = async () => {
       try {
         const { data } = await api(`/orders`);

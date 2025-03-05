@@ -2,14 +2,13 @@ const { Router } = require("express");
 const authorization = require("../../middleware/authMiddleWare.js");
 
 const authUser = require("./authUser");
-// import getUser from "./getUser";
-// import updateUser from "./updateUser";
+const getUser = require("./getUser");
 
 const router = Router();
 
 router.use(authorization);
 router.post("/login", authUser);
-// router.get("/profile", getUser);
+router.get("/getUser", getUser);
 // router.put("/profile", updateUser);
 
 module.exports = router;
