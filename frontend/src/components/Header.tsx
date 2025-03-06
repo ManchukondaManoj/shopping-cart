@@ -81,7 +81,7 @@ const Header = () => {
                         href="/updateProfile"
                         className="block px-4 py-2 hover:bg-gray-200"
                       >
-                        Profile
+                        Update Profile
                       </Link>
                       <Link
                         onClick={() => setDropdownOpen(false)}
