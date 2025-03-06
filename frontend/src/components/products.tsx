@@ -1,8 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-
-import Rating from "@/components/Rating";
-
 interface ProductProps {
   product: {
     productId: string;
@@ -16,7 +13,7 @@ interface ProductProps {
   };
 }
 
-const Product: React.FC<ProductProps> = ({ product }) => {
+const Product: React.FC<ProductProps> = ({ product }: ProductProps) => {
   return (
     <div className="border rounded-lg shadow-md p-3 my-3">
       <Link href={`/products/${product.productId}`} className="block">

@@ -13,6 +13,7 @@ interface ProductFilterProps {
 const ProductFilter: React.FC<ProductFilterProps> = ({
   categories,
   onFilter,
+  onClear,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [minPrice, setMinPrice] = useState<number>(0);
@@ -42,7 +43,6 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
   return (
     <form onSubmit={handleSubmit} className="bg-white shadow rounded mb-6">
       <div className="flex flex-col md:flex-row md:space-x-8 md:items-end p-2">
-        {/* Category Field */}
         <div className="flex-1">
           <label
             htmlFor="category"
@@ -65,7 +65,6 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
           </select>
         </div>
 
-        {/* Price Range Fields */}
         <div className="flex-1 flex flex-col md:flex-row md:space-x-4">
           <div className="flex-1">
             <label
@@ -101,7 +100,6 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
           </div>
         </div>
 
-        {/* Apply Filter Button */}
         <div className="flex-shrink-0 mt-4 md:mt-0">
           <button
             type="submit"
@@ -111,7 +109,6 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
           </button>
         </div>
 
-        {/* Clear Filter Button (X) */}
         <div className="flex-shrink-0 mt-4 md:mt-0">
           <button
             type="button"

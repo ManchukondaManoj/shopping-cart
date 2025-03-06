@@ -15,6 +15,9 @@ interface Product {
   price: number;
   rating: number;
   numReviews: number;
+  category: string;
+  countInStock: number;
+  description: string;
 }
 
 interface ProductState {

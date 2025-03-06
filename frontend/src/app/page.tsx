@@ -5,26 +5,33 @@ import { listProducts } from "@/store/productActions";
 import Product from "@/components/products";
 import ProductFilter from "@/components/Filter";
 import SearchComponent from "@/components/SearchComponent";
+import { RootState, AppDispatch } from "@/store/store";
+
+type HandleFilterType = {
+  category: string;
+  minPrice: number;
+  maxPrice: number;
+};
 
 const HomeScreen = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const {
     fetching,
     error,
     products: productsInState,
-  } = useSelector((state) => state.products);
+  } = useSelector((state: RootState) => state.products);
 
   const [products, setProducts] = useState(productsInState);
 
   useEffect(() => {
-    dispatch(listProducts() as any);
+    dispatch(listProducts());
   }, [dispatch]);
 
   useEffect(() => {
     setProducts(productsInState);
   }, [productsInState]);
 
-  const handleFilter = ({ category, minPrice, maxPrice }) => {
+  const handleFilter = ({ category, minPrice, maxPrice }: HandleFilterType) => {
     const filteredProducts = productsInState.filter((product) => {
       const { category: cat, price } = product;
       const matchesCategory = category ? cat === category : true;
@@ -37,7 +44,6 @@ const HomeScreen = () => {
     setProducts(productsInState);
   };
 
-  // const handleSeach = (query) => {};
   const filterProducts = (searchQuery: string) => {
     if (!searchQuery) {
       setProducts(productsInState);
@@ -48,11 +54,9 @@ const HomeScreen = () => {
       const text = item.name.toLowerCase();
       const desc = item.description.toLowerCase();
       const query = searchQuery.toLowerCase();
-      console.log(text, desc, query);
       return text.includes(query) || desc.includes(query);
     });
 
-    console.log("===filtered", filtered);
     setProducts(filtered);
   };
 
@@ -66,7 +70,6 @@ const HomeScreen = () => {
   } else {
     return (
       <div className="container mx-auto px-4">
-        {/* <h1 className="text-2xl font-bold my-2">Latest Products</h1> */}
         <SearchComponent onQueryChange={filterProducts} />
         <ProductFilter
           categories={categories}

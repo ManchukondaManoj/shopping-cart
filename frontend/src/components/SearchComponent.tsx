@@ -1,16 +1,18 @@
 import { useState, useEffect, useCallback } from "react";
 
 type SearchComponentPropType = {
-  onQueryChange: (e) => void;
+  onQueryChange: (e: string) => void;
 };
+
+type filterFn = (e: string) => void;
 
 const SearchComponent = ({ onQueryChange }: SearchComponentPropType) => {
   const [query, setQuery] = useState("");
 
   // Debounce function
-  const debounce = (func: Function, delay: number) => {
+  const debounce = (func: filterFn, delay: number) => {
     let timer: NodeJS.Timeout;
-    return (...args: any) => {
+    return (...args: unknown[]) => {
       clearTimeout(timer);
       timer = setTimeout(() => func(...args), delay);
     };
@@ -36,18 +38,6 @@ const SearchComponent = ({ onQueryChange }: SearchComponentPropType) => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-
-      {/* {filteredResults.length > 0 ? (
-        <ul className="mt-2 bg-white border border-gray-200 rounded-md shadow-md">
-          {filteredResults.map((item) => (
-            <li key={item.id} className="p-2 border-b last:border-none">
-              <strong>{item.name}</strong>: {item.description}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="mt-2 text-gray-500">No results found</p>
-      )} */}
     </div>
   );
 };

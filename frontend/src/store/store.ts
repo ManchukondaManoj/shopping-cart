@@ -1,6 +1,8 @@
 "use client";
 
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import thunk from "redux-thunk";
+
 import authReducer from "./authReducer";
 import { productListReducer, productDetailsReducer } from "./productReducers";
 import { cartReducer } from "./cartReducers";
