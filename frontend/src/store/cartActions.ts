@@ -102,16 +102,19 @@ export const removeFromCart =
     }
   };
 
-export const getUserCart = () => async (dispatch: Dispatch) => {};
-
 export const updateCartInitialState = () => async (dispatch: Dispatch) => {
   try {
     let cartData = null;
-    const { data } = await api.get("/cart");
-    const { cart = [] } = data;
-    if (cart.length) {
-      cartData = cart;
+
+    const authToken = localStorage.getItem("auth_token");
+    if (authToken) {
+      const { data } = await api.get("/cart");
+      const { cart = [] } = data;
+      if (cart.length) {
+        cartData = cart;
+      }
     }
+
     dispatch(updateInitialState(cartData));
   } catch (error) {
     console.log(error);
