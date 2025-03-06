@@ -56,7 +56,7 @@ const Header = () => {
               </Link>
               {userInfo && userInfoHasKeys ? (
                 <div className="relative" onMouseEnter={handleMouseEnter}>
-                  <button className="flex items-center hover:text-gray-300 focus:outline-none">
+                  <button className="cursor-pointer flex items-center hover:text-gray-300 focus:outline-none">
                     <span>
                       {userInfo.displayName || userInfo.name || userInfo.email}
                     </span>
@@ -71,7 +71,7 @@ const Header = () => {
                         <Link
                           onClick={() => setDropdownOpen(false)}
                           href="/admin"
-                          className="block px-4 py-2 hover:bg-gray-200"
+                          className="cursor-pointer block px-4 py-2 hover:bg-gray-200"
                         >
                           Admin Page
                         </Link>
@@ -79,20 +79,20 @@ const Header = () => {
                       <Link
                         onClick={() => setDropdownOpen(false)}
                         href="/updateProfile"
-                        className="block px-4 py-2 hover:bg-gray-200"
+                        className="cursor-pointer block px-4 py-2 hover:bg-gray-200"
                       >
                         Update Profile
                       </Link>
                       <Link
                         onClick={() => setDropdownOpen(false)}
                         href="/orders"
-                        className="block px-4 py-2 hover:bg-gray-200"
+                        className="block cursor-pointer px-4 py-2 hover:bg-gray-200"
                       >
                         My Orders
                       </Link>
                       <div
                         onClick={handleLogout}
-                        className="w-full text-left block px-4 py-2 hover:bg-gray-200"
+                        className="w-full cursor-pointer text-left block px-4 py-2 hover:bg-gray-200"
                       >
                         Log Out
                       </div>

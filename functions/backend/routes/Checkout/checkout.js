@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
 
     const productAndAvailableStock = {};
     snapshot.forEach((doc) => {
-      productAndAvailableStock[doc.id] = doc.data().countInStock;
+      productAndAvailableStock[doc.id] = parseInt(doc.data().countInStock);
     });
 
     const orderDetails = {
@@ -29,6 +29,10 @@ module.exports = async (req, res) => {
     };
 
     const orderRef = fireStoreDb.collection("orders").doc();
+
+    const userCartRef = fireStoreDb
+      .collection("cart") // Change this to the collection you're targeting
+      .doc(req.user.user_id);
 
     try {
       await fireStoreDb.runTransaction(async (transaction) => {
@@ -47,6 +51,10 @@ module.exports = async (req, res) => {
             transaction.update(productRef, {
               countInStock: fireStore.FieldValue.increment(-item.qty),
             });
+            // Replace with the document ID you want to delete
+
+            // Deleting the document within the transaction
+            transaction.delete(userCartRef);
             console.log("Transaction committed successfully!");
             return res
               .status(200)

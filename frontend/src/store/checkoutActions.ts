@@ -39,7 +39,6 @@ export const checkout =
       dispatch({ type: CHECKOUT_ORDER_SUCCESS, payload: data });
       dispatch(clearCart());
     } catch (error) {
-      console.log("==========ERR", error.response.data.message);
       const err = error?.response?.data?.message || error.message;
       dispatch({
         type: CHECKOUT_ORDER_FAIL,
