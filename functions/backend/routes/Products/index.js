@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const authorization = require("../../middleware/authMiddleWare.js");
 const validateRequest = require("../../middleware/validateUserRequest.js");
+const rbacValidation = require("../../middleware/rbacValidation");
 const {
   productSchema,
   updateProductSchema,
@@ -17,6 +18,7 @@ router.get("/", getProducts);
 router.get("/:id", getProductById);
 
 router.use(authorization);
+router.use(rbacValidation);
 router.post("/", validateRequest(productSchema), addProduct);
 router.put("/", validateRequest(updateProductSchema), updateProduct);
 module.exports = router;
