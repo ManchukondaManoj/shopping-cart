@@ -114,7 +114,8 @@ const CartScreen = () => {
           <div className="bg-white shadow-md rounded p-4">
             <div className="border-b pb-4 mb-4">
               <h2 className="text-xl font-bold">
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}{" "}
+                Subtotal (
+                {cartItems.reduce((acc, item) => acc + parseInt(item.qty), 0)}{" "}
                 items)
               </h2>
               <p className="text-lg">
