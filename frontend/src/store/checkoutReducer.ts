@@ -3,6 +3,7 @@ import {
   CHECKOUT_ORDER_FAIL,
   CHECKOUT_ORDER_REQUEST,
   CHECKOUT_ORDER_SUCCESS,
+  CHECKOUT_ORDER_INITIAL_STATE,
 } from "./types";
 
 interface OrderSuccessAction {
@@ -19,7 +20,15 @@ interface OrderRequestAction {
   type: typeof CHECKOUT_ORDER_REQUEST;
 }
 
-type CheckoutAction = OrderSuccessAction | OrderRequestAction | OrderFailState;
+interface CheckoutOrderInitialState {
+  type: typeof CHECKOUT_ORDER_INITIAL_STATE;
+}
+
+type CheckoutAction =
+  | OrderSuccessAction
+  | OrderRequestAction
+  | OrderFailState
+  | CheckoutOrderInitialState;
 
 export interface CheckoutState {
   fetching: boolean;
@@ -55,6 +64,15 @@ export const checkoutReducer = (
         isOrderPlaced: true,
       };
     }
+
+    case CHECKOUT_ORDER_INITIAL_STATE: {
+      return {
+        fetching: false,
+        error: "",
+        isOrderPlaced: false,
+      };
+    }
+
     default:
       return state;
   }

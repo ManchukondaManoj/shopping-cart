@@ -23,7 +23,6 @@ const CheckoutScreen: React.FC = () => {
 
   useEffect(() => {
     if (error) {
-      console.log("====ERROR IN P");
       alert(error);
     }
   }, [error]);

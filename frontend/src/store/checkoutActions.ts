@@ -3,8 +3,10 @@ import {
   CHECKOUT_ORDER_FAIL,
   CHECKOUT_ORDER_REQUEST,
   CHECKOUT_ORDER_SUCCESS,
+  CHECKOUT_ORDER_INITIAL_STATE,
 } from "./types";
 import { clearCart } from "./cartActions";
+import { Dispatch } from "@reduxjs/toolkit";
 
 interface ShippingAddress {
   address: string;
@@ -46,3 +48,9 @@ export const checkout =
       });
     }
   };
+
+export const setCheckoutInitialState = () => (dispatch: Dispatch) => {
+  dispatch({
+    type: CHECKOUT_ORDER_INITIAL_STATE,
+  });
+};

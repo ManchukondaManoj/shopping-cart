@@ -1,11 +1,13 @@
 // pages/orders.tsx (or app/orders/page.tsx if using the App Router)
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 import api from "@/lib/axiosInterceptors";
 import withAuth from "@/components/withAuthHOC";
+import { RootState, AppDispatch } from "@/store/store";
+import { setCheckoutInitialState } from "@/store/checkoutActions";
 interface ShippingAddress {
   address: string;
   city: string;
@@ -37,27 +39,29 @@ const OrdersPage: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const { isOrderPlaced } = useSelector((state) => state.checkoutReducer);
+  const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(() => {
-    localStorage.setItem("previousRoute", "orders");
-  }, []);
+  const { isOrderPlaced } = useSelector(
+    (state: RootState) => state.checkoutReducer
+  );
 
-  const fetchOrders = async () => {
+  const fetchOrders = useCallback(async () => {
     try {
       const {
         data: { orders: userOrders },
       } = await api(`/orders`);
-      console.log(orders);
+      console.log(userOrders); // Fixed console.log to use userOrders instead of 'orders'
       setOrders(userOrders);
     } catch (err: any) {
       setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
-  };
+  }, [setOrders, setError, setLoading]);
 
   useEffect(() => {
+    localStorage.setItem("previousRoute", "orders");
+    dispatch(setCheckoutInitialState());
     fetchOrders();
   }, []);
 
@@ -65,7 +69,7 @@ const OrdersPage: React.FC = () => {
     if (isOrderPlaced) {
       fetchOrders();
     }
-  }, [isOrderPlaced]);
+  }, [isOrderPlaced, fetchOrders]);
 
   return (
     <div className="container mx-auto px-4 py-8">
