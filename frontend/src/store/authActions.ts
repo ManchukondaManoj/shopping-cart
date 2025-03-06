@@ -69,9 +69,8 @@ const postLoginActions = async (userCredential: any, email: string) => {
     };
     await api("/cart", cartConfig);
   } else {
-    const {
-      data: { cart },
-    } = await api.get("/cart");
+    const { data } = await api.get("/cart");
+    const { cart = [] } = data;
     if (cart.length) {
       localStorage.setItem("cartItems", JSON.stringify(cart));
     }
@@ -150,37 +149,40 @@ export const setUserInfo = () => (dispatch: Dispatch) => {
 export const updateUserPassword = (password: string) => async () => {
   const userData = auth.currentUser;
   await updatePassword(userData, password);
+  alert("Profile updated successfully");
 };
 
-export const updateUserProfile = (displayName: string) => async (dispatch) => {
-  try {
-    const userData = auth.currentUser;
-    const updatedUserProfile = await updateProfile(userData, { displayName });
-    dispatch({
-      type: "UPDATE_USER_DISPLAY_NAME",
-      payload: displayName,
-    });
-  } catch (error) {
-    throw error;
-  }
-};
+export const updateUserProfile =
+  (displayName: string) => async (dispatch: Dispatch) => {
+    try {
+      const userData = auth.currentUser;
+      await updateProfile(userData, { displayName });
+      dispatch({
+        type: "UPDATE_USER_DISPLAY_NAME",
+        payload: displayName,
+      });
+      alert("Profile updated successfully");
+    } catch (error) {
+      throw error;
+    }
+  };
 export const handleAuthChange = async () => {
   try {
     auth.onAuthStateChanged(async (user) => {
-      console.log("========user", user);
       let userData = {};
-      if (user) {
+      const signedUpRoute = localStorage.getItem("previousRoute") === "signup";
+      if (user && !signedUpRoute) {
         const token = await user.getIdToken();
         localStorage.setItem("auth_token", token);
         const { data } = await api.get("/auth/getUser");
         userData = data.user;
       }
-      const signedUpRoute = localStorage.getItem("previousRoute") === "signup";
       const userToUpdate = {
         ...userData,
         ...user?.providerData[0],
       };
-      if (!signedUpRoute) {
+      const validUserObj = Object.keys(userToUpdate).length;
+      if (!signedUpRoute && validUserObj) {
         localStorage.setItem("userInfo", JSON.stringify(userToUpdate));
       }
     });

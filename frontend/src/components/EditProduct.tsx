@@ -47,8 +47,18 @@ const EditProduct = () => {
 
   const handleEditProduct = async (updatedProduct: selectedProduct) => {
     const countInStock = parseInt(updatedProduct.countInStock, 10);
-    const price = parseInt(updatedProduct.price, 10);
-    const properProduct = {
+    const price = parseFloat(updatedProduct.price);
+
+    const {
+      userId,
+      createdAt,
+      _id,
+      brand,
+      rating,
+      numReviews,
+      updatedBy,
+      ...properProduct
+    } = {
       ...updatedProduct,
       countInStock,
       price,

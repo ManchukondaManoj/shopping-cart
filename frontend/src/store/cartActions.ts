@@ -83,7 +83,10 @@ export const removeFromCart =
   (productId: string) => async (dispatch: Dispatch, getState: any) => {
     dispatch(removeItemFromCart(productId));
     try {
-      const cartItems = getState().cart.cartItems;
+      const cartItems = getState().cart.cartItems.map(
+        ({ coutInStock, ...rest }) => rest
+      );
+
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
       const cartConfig = {
@@ -105,6 +108,5 @@ export const updateCartInitialState = () => async (dispatch: Dispatch) => {
 export const clearCart = () => async (dispatch: Dispatch) => {
   localStorage.removeItem("cartItems");
   dispatch(removeAllItemsFromCart());
-
   dispatch(updateInitialState());
 };

@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
       });
     });
 
-    res.status(200).json(orders);
+    res.status(200).json({ orders });
   } catch (error) {
     res.status(400);
     throw error;

@@ -35,8 +35,6 @@ const UpdateProfile: React.FC = () => {
       if (name) {
         dispatch(updateUserProfile(name));
       }
-      // Redirect after successful update
-      //   router.push("/profile");
     } catch (err: any) {
       setError(err.message);
     } finally {

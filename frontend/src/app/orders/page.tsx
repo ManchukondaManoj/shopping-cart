@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Link from "next/link";
 import api from "@/lib/axiosInterceptors";
 import withAuth from "@/components/withAuthHOC";
@@ -36,28 +37,35 @@ const OrdersPage: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
-  // For demonstration, we're using a hardcoded userId.
-  // In a real app, you'll get this from your auth context or state.
+  const { isOrderPlaced } = useSelector((state) => state.checkoutReducer);
 
   useEffect(() => {
     localStorage.setItem("previousRoute", "orders");
   }, []);
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const { data } = await api(`/orders`);
-        setOrders(data);
-      } catch (err: any) {
-        setError(err.message || "Something went wrong");
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchOrders = async () => {
+    try {
+      const {
+        data: { orders: userOrders },
+      } = await api(`/orders`);
+      console.log(orders);
+      setOrders(userOrders);
+    } catch (err: any) {
+      setError(err.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchOrders();
   }, []);
+
+  useEffect(() => {
+    if (isOrderPlaced) {
+      fetchOrders();
+    }
+  }, [isOrderPlaced]);
 
   return (
     <div className="container mx-auto px-4 py-8">

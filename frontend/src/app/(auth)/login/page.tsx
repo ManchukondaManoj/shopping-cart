@@ -28,7 +28,6 @@ export default function Login() {
     if (user) {
       const previousRoute = localStorage.getItem("previousRoute") || "";
       if (previousRoute === "signup") {
-        localStorage.removeItem("previousRoute");
         router.push("/");
       } else {
         router.push(`/${previousRoute}`);
@@ -49,7 +48,7 @@ export default function Login() {
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
-      <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
+      <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-2xl">
         <h2 className="text-center text-2xl font-bold text-gray-800">Log In</h2>
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <div>
@@ -84,7 +83,7 @@ export default function Login() {
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <button
             type="submit"
-            className="w-full rounded-md bg-blue-500 px-4 py-3 text-white font-semibold hover:bg-blue-600 transition duration-300"
+            className="cursor-pointer w-full rounded-md bg-blue-500 px-4 py-3 text-white font-semibold hover:bg-blue-600 transition duration-300"
           >
             {loading ? "Logging in..." : "Log In"}
           </button>
@@ -92,11 +91,14 @@ export default function Login() {
 
         <p className="mt-4 text-center text-sm text-gray-600">
           Don't have an account?{" "}
-          <Link href="/signup" className="text-blue-500 hover:underline">
+          <Link
+            href="/signup"
+            className="cursor-pointer text-blue-500 hover:underline"
+          >
             Sign Up
           </Link>
         </p>
-        <GoogleAuthButton label="" />
+        <GoogleAuthButton label="Sign In With Google" />
       </div>
     </div>
   );

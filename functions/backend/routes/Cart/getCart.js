@@ -8,9 +8,7 @@ module.exports = async (req, res) => {
       res.status(200).json(data);
     } else {
       res.status(200).json({
-        data: {
-          cart: [],
-        },
+        cart: [],
       });
     }
   } catch (error) {

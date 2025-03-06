@@ -17,7 +17,16 @@ const CheckoutScreen: React.FC = () => {
 
   const dispatch = useDispatch();
   const router = useRouter();
-  const { isOrderPlaced } = useSelector((state) => state.checkoutReducer);
+  const { isOrderPlaced, error } = useSelector(
+    (state) => state.checkoutReducer
+  );
+
+  useEffect(() => {
+    if (error) {
+      console.log("====ERROR IN P");
+      alert(error);
+    }
+  }, [error]);
 
   useEffect(() => {
     if (isOrderPlaced) {

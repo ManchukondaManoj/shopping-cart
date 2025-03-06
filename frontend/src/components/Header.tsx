@@ -22,7 +22,7 @@ const Header = () => {
   }, [user]);
 
   const handleLogout = () => {
-    console.log("=======hand");
+    setDropdownOpen(false);
     dispatch(logout());
     router.push("/");
   };
@@ -47,6 +47,7 @@ const Header = () => {
             </Link>
             <div className="hidden md:flex space-x-6 items-center">
               <Link
+                onClick={() => setDropdownOpen(false)}
                 href="/cart"
                 className="flex items-center hover:text-gray-300"
               >
@@ -68,6 +69,7 @@ const Header = () => {
                     >
                       {userInfo.isAdmin && (
                         <Link
+                          onClick={() => setDropdownOpen(false)}
                           href="/admin"
                           className="block px-4 py-2 hover:bg-gray-200"
                         >
@@ -75,12 +77,14 @@ const Header = () => {
                         </Link>
                       )}
                       <Link
+                        onClick={() => setDropdownOpen(false)}
                         href="/updateProfile"
                         className="block px-4 py-2 hover:bg-gray-200"
                       >
                         Profile
                       </Link>
                       <Link
+                        onClick={() => setDropdownOpen(false)}
                         href="/orders"
                         className="block px-4 py-2 hover:bg-gray-200"
                       >

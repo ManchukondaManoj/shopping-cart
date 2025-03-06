@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import withAuth from "@/components/withAuthHOC";
+import withAdminHOC from "@/components/withAdminHOC";
 import AddProduct from "@/components/AddProduct";
 import EditProduct from "@/components/EditProduct";
 import { listProducts } from "@/store/productActions";
@@ -77,4 +77,4 @@ const AdminPage = () => {
   );
 };
 
-export default withAuth(AdminPage);
+export default withAdminHOC(AdminPage);
