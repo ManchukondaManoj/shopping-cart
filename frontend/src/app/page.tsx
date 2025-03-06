@@ -32,7 +32,8 @@ const HomeScreen = () => {
   }, [productsInState]);
 
   const handleFilter = ({ category, minPrice, maxPrice }: HandleFilterType) => {
-    const filteredProducts = productsInState.filter((product) => {
+    const ITEMS = products.length ? products : productsInState;
+    const filteredProducts = ITEMS.filter((product) => {
       const { category: cat, price } = product;
       const matchesCategory = category ? cat === category : true;
       const matchesPrice = price >= minPrice && price <= maxPrice;
@@ -50,7 +51,9 @@ const HomeScreen = () => {
       return;
     }
 
-    const filtered = productsInState.filter((item) => {
+    const ITEMS = products.length ? products : productsInState;
+
+    const filtered = ITEMS.filter((item) => {
       const text = item.name.toLowerCase();
       const desc = item.description.toLowerCase();
       const query = searchQuery.toLowerCase();
