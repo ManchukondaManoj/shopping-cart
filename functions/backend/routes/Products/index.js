@@ -5,12 +5,13 @@ const {
   productSchema,
   updateProductSchema,
 } = require("../../validationSchema/productSchema.js");
+
 const router = Router();
 
 const getProducts = require("./getProducts.js");
 const getProductById = require("./getProductById.js");
-const addProduct = require("./addProduct");
-const updateProduct = require("./updateProduct");
+const addProduct = require("./addProduct.js");
+const updateProduct = require("./updateProduct.js");
 
 router.get("/", getProducts);
 router.get("/:id", getProductById);

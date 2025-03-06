@@ -41,8 +41,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/backend
+# /backend
 /frontend/node_modules
 /backend/node_modules
 /functions/node_modules
 .firebase
+firebase-debug.log

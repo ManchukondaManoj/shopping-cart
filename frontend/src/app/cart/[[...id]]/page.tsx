@@ -49,7 +49,7 @@ const CartScreen = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row md:space-x-8">
         <div className="md:w-2/3">
-          <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
+          <h1 className="text-2xl font-bold mb-4">Easy Shop</h1>
           {cartItems.length === 0 ? (
             <Link href="/" className="text-blue-500 hover:underline">
               Go Back

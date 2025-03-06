@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "@/store/productActions";
 import Product from "@/components/products";
 import ProductFilter from "@/components/Filter";
+import SearchComponent from "@/components/SearchComponent";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,26 @@ const HomeScreen = () => {
   const handleOnClear = () => {
     setProducts(productsInState);
   };
+
+  // const handleSeach = (query) => {};
+  const filterProducts = (searchQuery: string) => {
+    if (!searchQuery) {
+      setProducts(productsInState);
+      return;
+    }
+
+    const filtered = productsInState.filter((item) => {
+      const text = item.name.toLowerCase();
+      const desc = item.description.toLowerCase();
+      const query = searchQuery.toLowerCase();
+      console.log(text, desc, query);
+      return text.includes(query) || desc.includes(query);
+    });
+
+    console.log("===filtered", filtered);
+    setProducts(filtered);
+  };
+
   const categories = Array.from(
     new Set(productsInState.map(({ category }) => category))
   );
@@ -45,7 +66,8 @@ const HomeScreen = () => {
   } else {
     return (
       <div className="container mx-auto px-4">
-        <h1 className="text-2xl font-bold my-2">Latest Products</h1>
+        {/* <h1 className="text-2xl font-bold my-2">Latest Products</h1> */}
+        <SearchComponent onQueryChange={filterProducts} />
         <ProductFilter
           categories={categories}
           onFilter={handleFilter}

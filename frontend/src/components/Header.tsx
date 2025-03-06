@@ -43,7 +43,7 @@ const Header = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="text-xl font-bold">
-              Shopping Cart
+              Easy Shop
             </Link>
             <div className="hidden md:flex space-x-6 items-center">
               <Link
