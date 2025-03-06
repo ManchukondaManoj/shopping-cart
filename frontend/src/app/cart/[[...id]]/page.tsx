@@ -7,20 +7,20 @@ import { useRouter, useParams, useSearchParams } from "next/navigation";
 // import Message from "../components/Message";
 import { addToCart, removeFromCart } from "../../../store/cartActions";
 import { updateCartInitialState } from "@/store/cartActions";
-// import type { RootState } from "../store";
+import type { RootState, AppDispatch } from "@/store/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const CartScreen = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { id = [] } = useParams();
   const searchParams = useSearchParams();
   const productId = id[0];
-  const qty = searchParams.get("qty"); // returns a string or null if not set
+  const qty = searchParams.get("qty");
 
   const cart = useSelector((state: RootState) => state.cart);
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state: RootState) => state.auth);
   const { cartItems } = cart;
 
   useEffect(() => {

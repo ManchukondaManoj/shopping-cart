@@ -4,6 +4,7 @@ import {
   CART_REMOVE_ITEM,
   CART_INITIAL_STATE,
   CLEAR_CART,
+  USER_CART,
 } from "./types";
 import type { CartItem } from "./cartActions";
 interface CartState {
@@ -22,6 +23,7 @@ interface CartRemoveItemAction {
 
 interface CartInitialStateAction {
   type: typeof CART_INITIAL_STATE;
+  payload: CartItem[] | null;
 }
 
 interface ClearCartStateAction {
@@ -77,7 +79,7 @@ export const cartReducer = (
       const cartItemsFromStorage = cartItems ? JSON.parse(cartItems) : [];
       return {
         ...state,
-        cartItems: cartItemsFromStorage,
+        cartItems: action.payload || cartItemsFromStorage,
       };
     }
 

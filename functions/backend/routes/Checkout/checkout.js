@@ -1,15 +1,19 @@
-const {
-  getFireStoreDb,
-  fireStoreDb,
-  fireStore,
-} = require("../../lib/firebaseAdmin");
+const { fireStoreDb, fireStore } = require("../../lib/firebaseAdmin");
 
 module.exports = async (req, res) => {
   try {
     const { orderData } = req.body;
 
+    let hasCart = false;
+
     const productsInCart = orderData.items.map((o) => o.product);
-    const productRef = getFireStoreDb.collection("products");
+    const productRef = fireStoreDb.collection("products");
+    const cartRef = fireStoreDb.collection("cart").doc(req.user.user_id);
+    const cartSnap = await cartRef.get();
+
+    if (cartSnap.exists) {
+      hasCart = true;
+    }
 
     const snapshot = await productRef
       .where("productId", "in", productsInCart)
@@ -54,7 +58,9 @@ module.exports = async (req, res) => {
             // Replace with the document ID you want to delete
 
             // Deleting the document within the transaction
-            transaction.delete(userCartRef);
+            if (hasCart) {
+              transaction.delete(userCartRef);
+            }
             console.log("Transaction committed successfully!");
             return res
               .status(200)

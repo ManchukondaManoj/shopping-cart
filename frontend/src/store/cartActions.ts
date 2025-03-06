@@ -41,8 +41,9 @@ export const removeAllItemsFromCart = () => ({
   type: CLEAR_CART,
 });
 
-export const updateInitialState = () => ({
+export const updateInitialState = (data = null) => ({
   type: CART_INITIAL_STATE,
+  payload: data,
 });
 
 export const addToCart =
@@ -101,8 +102,20 @@ export const removeFromCart =
     }
   };
 
+export const getUserCart = () => async (dispatch: Dispatch) => {};
+
 export const updateCartInitialState = () => async (dispatch: Dispatch) => {
-  dispatch(updateInitialState());
+  try {
+    let cartData = null;
+    const { data } = await api.get("/cart");
+    const { cart = [] } = data;
+    if (cart.length) {
+      cartData = cart;
+    }
+    dispatch(updateInitialState(cartData));
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const clearCart = () => async (dispatch: Dispatch) => {
